@@ -7,5 +7,5 @@ CREATE TABLE if NOT EXISTS beer
     quantity_on_hand integer,
     price          decimal,
     created_date   timestamp,
-    last_modified_date timestamp
+    last_modified timestamp
     );
