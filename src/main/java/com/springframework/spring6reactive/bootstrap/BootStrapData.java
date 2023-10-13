@@ -22,10 +22,8 @@ public class BootStrapData implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         loadBeerData();
-
         loadCustomerData();
         beerRepository.count().subscribe(count -> {
-            System.out.println("Count is: " + count);
             System.out.println("Beer Count is: " + count);
         });
 
@@ -58,7 +56,6 @@ public class BootStrapData implements CommandLineRunner {
     private void loadBeerData() {
         beerRepository.count().subscribe(count -> {
             if (count == 0) {
-
                 Beer beer1 = Beer.builder()
                         .beerName("Galaxy Cat")
                         .beerStyle("Pale ale")
@@ -66,7 +63,7 @@ public class BootStrapData implements CommandLineRunner {
                         .price(new BigDecimal("12.99"))
                         .quantityOnHand(122)
                         .createdDate(LocalDateTime.now())
-                        .lastModified(LocalDateTime.now())
+                        .lastModifiedDate(LocalDateTime.now())
                         .build();
 
                 Beer beer2 = Beer.builder()
@@ -76,7 +73,7 @@ public class BootStrapData implements CommandLineRunner {
                         .price(new BigDecimal("13.50"))
                         .quantityOnHand(25)
                         .createdDate(LocalDateTime.now())
-                        .lastModified(LocalDateTime.now())
+                        .lastModifiedDate(LocalDateTime.now())
                         .build();
 
                 Beer beer3 = Beer.builder()
@@ -86,7 +83,7 @@ public class BootStrapData implements CommandLineRunner {
                         .price(new BigDecimal("10.49"))
                         .quantityOnHand(40)
                         .createdDate(LocalDateTime.now())
-                        .lastModified(LocalDateTime.now())
+                        .lastModifiedDate(LocalDateTime.now())
                         .build();
 
                 beerRepository.save(beer1).subscribe();
