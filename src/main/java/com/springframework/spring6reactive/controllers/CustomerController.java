@@ -20,7 +20,8 @@ public class CustomerController {
 
     @DeleteMapping(CUSTOMER_PATH_ID)
     Mono<ResponseEntity<Void>> deleteById(@PathVariable("customerId") Integer customerId){
-        return customerService.deleteCustomerById(customerId).map(response -> ResponseEntity
+        return customerService.deleteCustomerById(customerId)
+                .thenReturn(ResponseEntity
                 .noContent().build());
     }
 
@@ -35,7 +36,7 @@ public class CustomerController {
     Mono<ResponseEntity<Void>> updateExistingCustomer(@PathVariable("customerId") Integer customerId,
                                                       @Validated @RequestBody CustomerDTO customerDTO){
         return customerService.updateCustomer(customerId, customerDTO)
-                .map(savedDto -> ResponseEntity.ok().build());
+                .map(savedDto -> ResponseEntity.noContent().build());
     }
 
     @PostMapping(CUSTOMER_PATH)
