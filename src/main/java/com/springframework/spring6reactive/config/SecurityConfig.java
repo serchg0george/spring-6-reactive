@@ -9,11 +9,12 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 
 @Configuration
 @EnableWebFluxSecurity
-public class SecurityConfiguration {
+public class SecurityConfig {
 
     @Bean
     SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
-        http.authorizeExchange(authorize ->
+        http.csrf(ServerHttpSecurity.CsrfSpec::disable)
+                .authorizeExchange(authorize ->
                         authorize.anyExchange()
                                 .authenticated())
                 .oauth2ResourceServer(resourceServer ->
